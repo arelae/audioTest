@@ -60,7 +60,12 @@ body {
     flex-direction: row;
     font-size: 2em;
     padding: 1%;
+    padding-top: 1em;
     align-items: center;
+}
+
+ul {
+    text-align: left;
 }
 
 /* #start {
@@ -73,7 +78,8 @@ body {
 #mixBut {
     background-color: #fbfbfb;
     color: #2b2b2b;
-    margin: 0 auto;
+    /* margin: 0 auto; */
+    float: left;
     padding: .25rem;  
     /* border-radius: 10%; */
 }
@@ -87,6 +93,7 @@ body {
 #reset-btn {
     background-color: #ff671d;
     margin: 0 auto;
+    float: right;
     padding: .25rem;  
     /* border-radius: 10%; */
 }

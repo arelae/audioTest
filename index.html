@@ -136,6 +136,11 @@
                             var ul = document.getElementById("tasks");
                             ul.innerHTML = "";
                         }
+                        //refresh confirmation
+                        window.onbeforeunload = function(event)
+                        {
+                            return confirm("Confirm refresh");
+                        };
                 </script>
             </div>
         </div>
