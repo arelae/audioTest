@@ -14,22 +14,84 @@
                     Login
                 </div>
             </div>
-            <div id="timer">
-                25:00
+            <div id="timer-container">
+                <h1>
+                    <div id="timer">
+                        <span id="minute">00</span> : 
+                        <span id="seconds">00</span>
+                    </div>
+                    <input type="button" id="mixBut" style="width:150px;height:40px;" value="Start Timer" />
+                    <button id="reset-btn" style="width:150px;height:40px;">Reset</button>
+                </h1>
+                <!-- 25:00 -->
+                <script>
+                    var twentyfiveMinutes = 60 * 25;
+                    var pomodoro = 1;
+                    //Timer Functions
+                    window.onload = () => {
+                        let minute = 0;
+                        let seconds = 0;
+                        let totalSeconds = twentyfiveMinutes;
+                        let intervalId = null;
+                        function startTimer() {
+                            --totalSeconds;
+                            seconds = Math.floor(totalSeconds % 60);
+                            minute = Math.floor((totalSeconds / 60) % 60);
+                            minute = minute < 10 ? "0" + minute : minute;
+                            seconds = seconds < 10 ? "0" + seconds : seconds;
+                            document.getElementById("minute").innerHTML = minute;
+                            document.getElementById("seconds").innerHTML = seconds;
+                            if(totalSeconds == 0){
+                                totalSeconds = twentyfiveMinutes;
+                                clearInterval(intervalId);
+                                sound();
+                            }
+                        }
+                        var mixBut = document.getElementById("mixBut");
+                        mixBut.addEventListener("click", Start);
+                        var resetTimer = document.getElementById("reset-btn");
+                        resetTimer.addEventListener("click", Reset);
+                        function Start(){
+                            intervalId = setInterval(startTimer, 1000);
+                            console.log("Started");
+                            mixBut.removeEventListener("click", Start);
+                            mixBut.addEventListener("click", Stop);
+                            document.getElementById("mixBut").style.background = "indianred";
+                            mixBut.value = "Stop Timer";
+                        }
+                        function Stop(){
+                        if (intervalId){
+                            clearInterval(intervalId);
+                        }
+                        console.log("Stopped");
+                        mixBut.removeEventListener("click", Stop);
+                        mixBut.addEventListener("click", Start);
+                        document.getElementById("mixBut").style.background = "lightgreen";
+                        mixBut.value = "Start Timer";
+                        }
+                        function Reset(){
+                            totalSeconds = twentyfiveMinutes;
+                            document.getElementById("minute").innerHTML = '00';
+                            document.getElementById("seconds").innerHTML = '00';
+                        }
+                    }
+                </script>
             </div>
             <div id="StartReset">
-                <div id="start">
+                <!-- <div id="start">
                     Start
                 </div>
                 <div id="reset">
                     Reset
-                </div>
+                </div> -->
             </div>
             <div id="tasklist">
-                <h2>Tasks:</h2>
-                <ul id="tasks"></ul>
+                <div id="task-container">
+                    <h2>Tasks:</h2>
+                    <ul id="tasks"></ul>
+                </div>
                 <input type="button" id="clearList" value="Clear List" />
-                <form action="#" method="post">
+                <form action="#" method="post" id="taskform">
                     <div>
                       <h2>Add a task:</h2>
                       <input type="text" name="newitem" id="newitem" placeholder="New Task" />
@@ -77,6 +139,8 @@
                 </script>
             </div>
         </div>
+        <!-- TODO: separate and organize html, css, js -->
+        <!-- <script src = "assets/scripts/clock.js"></script> --> 
     </body>
 </div>
 </html>
