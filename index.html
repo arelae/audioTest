@@ -1,89 +1,82 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title> Pomodoro Timer </title>
-  </head>
+<head>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<div id="main">
+    <body>
+        <div id="all">
+            <div id="SettingsLogin">
+                <div id="settings">
+                    Settings
+                </div>
+                <div id="login">
+                    Login
+                </div>
+            </div>
+            <div id="timer">
+                25:00
+            </div>
+            <div id="StartReset">
+                <div id="start">
+                    Start
+                </div>
+                <div id="reset">
+                    Reset
+                </div>
+            </div>
+            <div id="tasklist">
+                <h2>Tasks:</h2>
+                <ul id="tasks"></ul>
+                <input type="button" id="clearList" value="Clear List" />
+                <form action="#" method="post">
+                    <div>
+                      <h2>Add a task:</h2>
+                      <input type="text" name="newitem" id="newitem" placeholder="New Task" />
+                      <input type="submit" value="Add" />
+                      <input type="reset" value="Clear" />
+                    </div>
+                </form>
+                <script>
+                    (function(){
+                        var todo = document.querySelector( '#tasks' ),
+                            form = document.querySelector( 'form' ),
+                            field = document.querySelector( '#newitem' );
+                        form.addEventListener( 'submit', function( event ) {
+                            var text = field.value;
+                            if ( text !== '' ) {
+                                todo.innerHTML += '<li>' + text +
+                                ' <button onclick="Check(this);">check as done</button> <button onclick="Delete(this);">X</button> </li>';
+                                field.value = '';
+                            }
+                            event.preventDefault();
+                        }, false);
+                        })();
 
-  <body>
-    <h1> Pomodoro Timer Test 1 </h1>
-    <p id="time"> 1:00 </p>
-    
-    <script> 
-    var alarmAudio = new Audio('https://freesound.org/data/previews/219/219244_4082826-lq.mp3');
-    function timer() {
-      let currTime = new Date().getTime();
-      let timerTime = new Date();
-      timerTime.setMinutes(timerTime.getUTCMinutes() + 1);
-      const timer = timerTime.getTime();
+                        function Check(curr){
+                            if(curr.parentNode.innerHTML.charAt(0) == "✓"){
+                                curr.parentNode.innerHTML= curr.parentNode.innerHTML.substring(1);
+                            }
+                            else{
+                                curr.parentNode.innerHTML = "✓ " + curr.parentNode.innerHTML;
+                            }
+                        }
 
-      let val = setInterval( function() {
-        let curr = new Date().getTime();
-        let distance = timer - curr;
+                        function Delete(curr){
+                            curr.parentNode.parentNode.removeChild(curr.parentNode);    
+                        }
 
-        let min = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        let sec = Math.floor((distance % (1000 * 60)) / 1000);
-        if(sec >= 10){
-            document.getElementById("time").innerHTML = min + ":" + sec;
-        }
-        if(sec < 10){
-            document.getElementById("time").innerHTML = min + ":0" + sec;
-        }
-        if(min == 0 && sec == 0){ //plays audio when timer gets to 00:00, sometimes skips because timer skips 00:00?
-          //add this if infinite loop. doesnt stop till stop is pressed
-          // alarmAudio.addEventListener('ended', function() {
-          //   this.currentTime = 0;
-          //   this.play();
-          // }, false);
-          alarmAudio.play();
-        }
-        if (distance < 0) { 
-            clearInterval(val);
-            document.getElementById("time").innerHTML = "DONE";
-        }
-        }, 1000);
-    }
-    </script>
+                        var listClear = document.getElementById("clearList");
 
-    <button style="color:red" onclick="toggle()">
-      <div id="start">Start</div>
-    </button>
+                        listClear.addEventListener("click", noList);
 
-    <script> 
-    function toggle() {
-      var name = document.getElementById("start");
-      if (name.innerHTML === "Start") {
-        name.innerHTML = "Stop";
-        timer();
-      } 
-      else {
-        name.innerHTML = "Start";
-        reset();
-        clearInterval(val);
-        document.getElementById("time").innerHTML = "DONE";
-      }
-    }
-    </script>
-
-    <button onClick="reset()">
-      <div id="reset">Reset</div>
-    </button>
-
-    <script>
-      function reset() { 
-        // location.reload(); //refreshes page, but it will lose tasks (use localStorage?)
-        document.getElementById("time").innerHTML = "1:00"; // change to user input value
-      }
-      document.getElementById("start").onclick = function(event) {stopAlarm()}; //stop alarm when press stop
-      document.getElementById("reset").onclick = function(event) {stopAlarm()}; //stop alarm when press reset
-      function stopAlarm() {
-          event.preventDefault(); //prevent refresh
-          var name = document.getElementById("start");
-          if(name.innerHTML == "Stop"){
-            alarmAudio.pause();
-            alarmAudio.currentTime = 0;
-          }
-      }
-      
-    </script>
-  </body>
+                        function noList(){
+                            var ul = document.getElementById("tasks");
+                            ul.innerHTML = "";
+                        }
+                </script>
+            </div>
+        </div>
+    </body>
+</div>
 </html>
