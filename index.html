@@ -9,18 +9,40 @@
     <body>
         <div id="all">
             <div id="SettingsLogin">
-                <button class="settings-btn" > 
+                <button id="settings-btn" > 
                     <img src="images/cog-solid.svg" height="35"/>
                 </button>
+                <!-- FIXME: modal isn't responsive with window size -->
+                <!-- pop up modal for settings -->
+                <div id="settings-modal" class="modal">
+                    <div class="modal-settings-content">
+                        <span class="close">&times;</span>
+                        <span id="modal-title"><p>Settings</p></span>
+                        <div class="modal-settings-customization">
+                            <p>Pomodoro Length</p>
+                                <input type="number" class="minutes" min="0" step="1"/>
+                                <input type="number" class="seconds" min="0" step="1"/>
+                                <br><hr style="color: black;"><br>
+                            <!-- <p>Notification Sound</p> -->
+                                <form action="/action_page.php">
+                                <label for="cars">Notification Sound:</label>
+                                <br><br>
+                                <select id="cars" name="cars">
+                                    <option value="Chirp">Chirp</option>
+                                    <option value="Alarm-Clock">Alarm Clock</option>
+                                    <option value="None">None</option>
+                                </select>
+                                <input type="submit">
+                                </form>
+                                <hr>
+                            <p>Volume</p>
+                            <!-- Add volume adjuster -->
+                        </div>
+                    </div>
+                </div>
                 <button class="login-btn" > 
                     <img src="images/profileIcon.png" height="35"/>
                 </button>
-                <!-- <div id="settings">
-                    Settings
-                </div>
-                <div id="login">
-                    Login
-                </div> -->
             </div>
             <div id="timer-container">
                 <h1>
@@ -34,12 +56,6 @@
                 <!-- 25:00 -->
             </div>
             <div id="StartReset">
-                <!-- <div id="start">
-                    Start
-                </div>
-                <div id="reset">
-                    Reset
-                </div> -->
             </div>
             <div id="tasklist">
                 <div id="task-container">
@@ -55,7 +71,7 @@
                       <input type="reset" value="Clear" />
                     </div>
                 </form>
-            </div>
+            </div> 
         </div>
         <!-- TODO: separate and organize html, css, js -->
         <script src = "scripts/pomo.js"></script> 

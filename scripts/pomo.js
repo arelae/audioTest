@@ -1,6 +1,33 @@
+// Get the modal
+var modal = document.getElementById("settings-modal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("settings-btn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on the button, open the modal
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+
+
 var alarmAudio = new Audio('https://freesound.org/data/previews/219/219244_4082826-lq.mp3');
-// var oneMinutes = 60 * 1;
-var twentyfiveMinutes = 60 * 25;
+var twentyfiveMinutes = 60 * 1;
+// var twentyfiveMinutes = 60 * 25;
 var pomodoro = 1;
 //Timer Functions
 window.onload = () => {
