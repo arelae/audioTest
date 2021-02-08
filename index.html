@@ -1,18 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <meta charset="utf-8"> 
 </head>
 <div id="main">
     <body>
         <div id="all">
             <div id="SettingsLogin">
-                <div id="settings">
+                <button class="settings-btn" > 
+                    <img src="images/cog-solid.svg" height="35"/>
+                </button>
+                <button class="login-btn" > 
+                    <img src="images/profileIcon.png" height="35"/>
+                </button>
+                <!-- <div id="settings">
                     Settings
                 </div>
                 <div id="login">
                     Login
-                </div>
+                </div> -->
             </div>
             <div id="timer-container">
                 <h1>
@@ -24,58 +32,6 @@
                     <button id="reset-btn" style="width:150px;height:40px;">Reset</button>
                 </h1>
                 <!-- 25:00 -->
-                <script>
-                    var twentyfiveMinutes = 60 * 25;
-                    var pomodoro = 1;
-                    //Timer Functions
-                    window.onload = () => {
-                        let minute = 0;
-                        let seconds = 0;
-                        let totalSeconds = twentyfiveMinutes;
-                        let intervalId = null;
-                        function startTimer() {
-                            --totalSeconds;
-                            seconds = Math.floor(totalSeconds % 60);
-                            minute = Math.floor((totalSeconds / 60) % 60);
-                            minute = minute < 10 ? "0" + minute : minute;
-                            seconds = seconds < 10 ? "0" + seconds : seconds;
-                            document.getElementById("minute").innerHTML = minute;
-                            document.getElementById("seconds").innerHTML = seconds;
-                            if(totalSeconds == 0){
-                                totalSeconds = twentyfiveMinutes;
-                                clearInterval(intervalId);
-                                sound();
-                            }
-                        }
-                        var mixBut = document.getElementById("mixBut");
-                        mixBut.addEventListener("click", Start);
-                        var resetTimer = document.getElementById("reset-btn");
-                        resetTimer.addEventListener("click", Reset);
-                        function Start(){
-                            intervalId = setInterval(startTimer, 1000);
-                            console.log("Started");
-                            mixBut.removeEventListener("click", Start);
-                            mixBut.addEventListener("click", Stop);
-                            document.getElementById("mixBut").style.background = "indianred";
-                            mixBut.value = "Stop Timer";
-                        }
-                        function Stop(){
-                        if (intervalId){
-                            clearInterval(intervalId);
-                        }
-                        console.log("Stopped");
-                        mixBut.removeEventListener("click", Stop);
-                        mixBut.addEventListener("click", Start);
-                        document.getElementById("mixBut").style.background = "lightgreen";
-                        mixBut.value = "Start Timer";
-                        }
-                        function Reset(){
-                            totalSeconds = twentyfiveMinutes;
-                            document.getElementById("minute").innerHTML = '00';
-                            document.getElementById("seconds").innerHTML = '00';
-                        }
-                    }
-                </script>
             </div>
             <div id="StartReset">
                 <!-- <div id="start">
@@ -99,53 +55,10 @@
                       <input type="reset" value="Clear" />
                     </div>
                 </form>
-                <script>
-                    (function(){
-                        var todo = document.querySelector( '#tasks' ),
-                            form = document.querySelector( 'form' ),
-                            field = document.querySelector( '#newitem' );
-                        form.addEventListener( 'submit', function( event ) {
-                            var text = field.value;
-                            if ( text !== '' ) {
-                                todo.innerHTML += '<li>' + text +
-                                ' <button onclick="Check(this);">check as done</button> <button onclick="Delete(this);">X</button> </li>';
-                                field.value = '';
-                            }
-                            event.preventDefault();
-                        }, false);
-                        })();
-
-                        function Check(curr){
-                            if(curr.parentNode.innerHTML.charAt(0) == "✓"){
-                                curr.parentNode.innerHTML= curr.parentNode.innerHTML.substring(1);
-                            }
-                            else{
-                                curr.parentNode.innerHTML = "✓ " + curr.parentNode.innerHTML;
-                            }
-                        }
-
-                        function Delete(curr){
-                            curr.parentNode.parentNode.removeChild(curr.parentNode);    
-                        }
-
-                        var listClear = document.getElementById("clearList");
-
-                        listClear.addEventListener("click", noList);
-
-                        function noList(){
-                            var ul = document.getElementById("tasks");
-                            ul.innerHTML = "";
-                        }
-                        //refresh confirmation
-                        window.onbeforeunload = function(event)
-                        {
-                            return confirm("Confirm refresh");
-                        };
-                </script>
             </div>
         </div>
         <!-- TODO: separate and organize html, css, js -->
-        <!-- <script src = "assets/scripts/clock.js"></script> --> 
+        <script src = "scripts/pomo.js"></script> 
     </body>
 </div>
 </html>
