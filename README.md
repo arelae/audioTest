@@ -1,3 +1,3 @@
 # audioTest
-audio for timer
-https://arelae.github.io/testPomo/
+## audio for timer
+Github Page for [Pomodoro Timer](https://arelae.github.io/testPomo/).
