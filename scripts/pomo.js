@@ -88,7 +88,7 @@ window.onload = () => {
     //Stop alarm sound
     document.getElementById("mixBut").onclick = function(event) {stopAlarm()}; //stop alarm when press stop
     document.getElementById("reset-btn").onclick = function(event) {stopAlarm()}; //stop alarm when press reset
-    function stopAlarm() {
+    function stopAlarm(event) {
         event.preventDefault(); //prevent refresh
         var name = document.getElementById("mixBut");
         if(name.value == "Stop Timer"){
@@ -98,22 +98,33 @@ window.onload = () => {
     }
 }
 
+// Custom Timer Length
+// var inputMins = document.getElementById("userMins").value;
+// var inputSecs = document.getElementById("userSecs").value;
+// if(inputMins == ""){
+//     alert("hello");
+// }
+// else{
+//     location.reload();
+//     twentyfiveMinutes = 60 * inputMins;
+//     alert(twentyfiveMinutes);
+// }
 
 
 (function(){
-var todo = document.querySelector( '#tasks' ),
-form = document.querySelector( 'form' ),
-field = document.querySelector( '#newitem' );
-form.addEventListener( 'submit', function( event ) {
-var text = field.value;
-if ( text !== '' ) {
-    todo.innerHTML += '<li>' + text +
-    ' <button onclick="Check(this);">check as done</button> <button onclick="Delete(this);">X</button> </li>';
-    field.value = '';
-}
-event.preventDefault();
-}, false);
-})();
+    var todo = document.querySelector( '#tasks' ),
+        form = document.querySelector( 'form' ),
+        field = document.querySelector( '#newitem' );
+    form.addEventListener( 'submit', function( event ) {
+      var text = field.value;
+      if ( text !== '' ) {
+        todo.innerHTML += '<li>' + text +
+          ' <button onclick="Check(this);">check as done</button> <button onclick="Delete(this);">X</button> </li>';
+        field.value = '';
+      }
+      event.preventDefault();
+    }, false);
+  })();
 
 function Check(curr){
 if(curr.parentNode.innerHTML.charAt(0) == "✓"){
@@ -136,8 +147,8 @@ function noList(){
 var ul = document.getElementById("tasks");
 ul.innerHTML = "";
 }
-//refresh confirmation
-window.onbeforeunload = function(event)
-{
-return confirm("Confirm refresh");
-};
+// //refresh confirmation
+// window.onbeforeunload = function(event)
+// {
+// return confirm("Confirm refresh");
+// };

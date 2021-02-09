@@ -27,7 +27,7 @@ body {
     display: flex;
     justify-content: center;
     font-size: 4em;
-    margin-top: 1rem;
+    /* margin-top: 1rem; */
     color: #b7daeb;
 }
 
@@ -37,8 +37,8 @@ body {
     flex-direction: row;
     font-size: 1.25em;
     /* align-items: center; */
-    padding: 1%;
-    padding-bottom: 10%;
+    /* padding: 1%; */
+    /* padding-bottom: 10%; */
 }
 
 #settings {
@@ -148,7 +148,7 @@ ul {
     margin: 4em auto; /* 15% from the top and centered */
     padding: 25px;
     /* change padding for modal size */
-    padding-bottom: 3em; 
+    padding-bottom: 1em; 
     border: 1px solid #888;
     /* min-width: 100px; */
     max-width: 20vw;
