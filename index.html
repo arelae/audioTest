@@ -27,7 +27,7 @@
                                 <!-- <form action="/action_page.php"> --> <!-- if 2 forms open, task doesnt work -->
                                 <label for="cars">Notification Sound:</label>
                                 <br><br>
-                                <select id="cars" name="cars">
+                                <select id="changeSelect" name="alarmMusic" onselect="sound()">
                                     <option value="Chirp">Chirp</option>
                                     <option value="Alarm-Clock">Alarm Clock</option>
                                     <option value="None">None</option>
@@ -36,6 +36,15 @@
                                 <hr>
                             <p>Volume</p>
                             <!-- Add volume adjuster -->
+                            <fieldset id="volume-controls">
+                                <div id="volume-grid-container">
+                                  <label for="volume-number" id="volume-text">Volume</label>
+                                  <input id="volume-number" name="volume-number" type="number" min="0" max="100"
+                                    value="100">
+                                  <input id="volume-slider" name="volume-slider" type="range" min="0" max="100"
+                                    value="100">
+                                </div>
+                            </fieldset>
                         </div>
                     </div>
                 </div>

@@ -24,10 +24,8 @@ window.onclick = function(event) {
   }
 }
 
-
-var alarmAudio = new Audio('https://freesound.org/data/previews/219/219244_4082826-lq.mp3');
-// var twentyfiveMinutes = 60 * 1;
-var twentyfiveMinutes = 60 * 25;
+var twentyfiveMinutes = 60 * 1;
+// var twentyfiveMinutes = 60 * 25;
 var pomodoro = 1;
 //Timer Functions
 window.onload = () => {
@@ -46,18 +44,59 @@ window.onload = () => {
         if(totalSeconds == 0){
             totalSeconds = twentyfiveMinutes;
             clearInterval(intervalId);
-            // sound();
+            sound();
         }
         //plays alarm when at 00:00
-        if(minute == 0 && seconds == 0){
-            //add this if infinite loop. doesnt stop till stop is pressed
-            // alarmAudio.addEventListener('ended', function() {
-            //   this.currentTime = 0;
-            //   this.play();
-            // }, false);
-            alarmAudio.play();
+        // if(minute == 0 && seconds == 0){
+        //     //add this if infinite loop. doesnt stop till stop is pressed
+        //     // alarmAudio.addEventListener('ended', function() {
+        //     //   this.currentTime = 0;
+        //     //   this.play();
+        //     // }, false);
+        //     alarmAudio.play();
+        // }
+    }
+    //Notfication Sound Functions
+    function sound(){
+        var x = document.getElementById("changeSelect").value;
+        var volLevel = document.getElementById("volume-slider").value / 100;
+        if(x == "Chirp"){
+            var audioSound = new Audio('https://freesound.org/data/previews/456/456440_5121236-lq.mp3');
+            audioSound.volume = volLevel;
+        }
+        else if(x == "Alarm-Clock"){
+            var audioSound = new Audio('https://freesound.org/data/previews/219/219244_4082826-lq.mp3');
+            audioSound.volume = volLevel;
+        }
+        else if(x == "None"){
+            var audioSound = new Audio('https://freesound.org/data/previews/219/219244_4082826-lq.mp3');
+            audioSound.volume = 0;
+        }
+        // infinite loop
+        audioSound.addEventListener('ended', function() {
+            this.currentTime = 0;
+            this.play();
+          }, false);
+        audioSound.play();
+        //Stop alarm sound
+        document.getElementById("mixBut").onclick = function(event) {stopAlarm()}; //stop alarm when press stop
+        document.getElementById("reset-btn").onclick = function(event) {stopAlarm()}; //stop alarm when press reset
+        function stopAlarm() {
+            if(audioSound){
+                audioSound.pause();
+                audioSound.currentTime = 0;
+            }
         }
     }
+    var slider = document.getElementById("volume-slider");
+    var numInp = document.getElementById("volume-number");
+    slider.oninput = function(){
+        document.getElementById("volume-number").value = document.getElementById("volume-slider").value;
+    }  
+    numInp.oninput = function(){
+        document.getElementById("volume-slider").value = document.getElementById("volume-number").value;
+    }
+
     var mixBut = document.getElementById("mixBut");
     mixBut.addEventListener("click", Start);
     var resetTimer = document.getElementById("reset-btn");
@@ -84,16 +123,6 @@ window.onload = () => {
         totalSeconds = twentyfiveMinutes;
         document.getElementById("minute").innerHTML = '25';
         document.getElementById("seconds").innerHTML = '00';
-    }
-    //Stop alarm sound
-    document.getElementById("mixBut").onclick = function(event) {stopAlarm()}; //stop alarm when press stop
-    document.getElementById("reset-btn").onclick = function(event) {stopAlarm()}; //stop alarm when press reset
-    function stopAlarm() {
-        var name = document.getElementById("mixBut");
-        if(name.value == "Stop Timer"){
-            alarmAudio.pause();
-            alarmAudio.currentTime = 0;
-        }
     }
 }
 
