@@ -125,7 +125,7 @@ window.onload = () => {
         mixBut.removeEventListener("click", Start);
         mixBut.addEventListener("click", Stop);
         document.getElementById("mixBut").style.background = "indianred";
-        mixBut.value = "Stop Timer";
+        mixBut.value = "Stop";
     }
     function Stop(){
         if (intervalId){

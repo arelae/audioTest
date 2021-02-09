@@ -129,23 +129,57 @@ ul {
 
 #task-container {
     background-color: #b8daeb;
-    border-radius: 25px;
+    border-radius: 15px;
     align-items: center;
     color: #07232e;
     text-align: center;
     padding-bottom: 3px;
-    margin-bottom: 1em;
+    margin-bottom: 0.5rem;
 }
 
 #tasks {
     background-color: #fbfbfb;
     color: #2b2b2b;
-    border-radius: 25px;
+    padding: 1rem;
+    margin: 0.5em;
+    /* border-radius: 25px; */
 }
 
-#tasks-title {
-    /* margin: 0;
-    line-height: 1; */
+h2 {
+    margin-bottom: 0;
+    text-align: center;
+}
+
+p {
+    margin-top: 0.5em;
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+#newitempomo {
+    width: 5em;
+}
+
+#add-btn {
+    background-color: #fbfbfb;
+    color: #2b2b2b;
+    margin: 0 auto;
+    /* float: left; */
+    padding: .25rem;  
+    border-radius: 25px;
+    /* font-weight: bold; */
+    /* font-size: 1.5rem; */
+}
+
+#clear-btn, #clearList {
+    background-color: #fbfbfb;
+    color: #2b2b2b;
+    margin: 0 auto;
+    /* float: left; */
+    padding: .25rem;  
+    border-radius: 25px;
+    /* font-weight: bold; */
+    /* font-size: 1.5rem; */
 }
 
 .modal {

@@ -68,26 +68,35 @@
                         <span id="minute">25</span> : 
                         <span id="seconds">00</span>
                     </div>
-                    <input type="button" id="mixBut" style="width:150px;height:40px;" value="Start Timer" />
+                    <input type="button" id="mixBut" style="width:150px;height:40px;" value="Start" />
                     <button id="reset-btn" style="width:150px;height:40px;">Reset</button>
                 </h1>
             </div>
             <div id="StartReset">
             </div>
+            <h2>Tasks:</h2>
+            <br>
             <div id="tasklist">
                 <div id="task-container">
-                    <span id="tasks-title"><h2>Tasks:</h2></span>
+                    <div id="tasks-title">   
+                        <div id="tasks-subtitle">
+                            <p style="float: left; width: 33%; text-align: left;">Tasks</p>
+                            <p style="float: right; width: 33%; text-align: right;">Pomodoros</p>
+                        </div>
+                        <br>
+                    </div>
                     <ul id="tasks"></ul>
                     <!-- TODO: Add number of pomos next to task -->
                 </div>
                 <input type="button" id="clearList" value="Clear List" />
                 <form action="#" method="post">
                     <div>
-                      <h2>Add a task:</h2>
-                      <input type="text" name="newitem" id="newitem" placeholder="New Task" />
-                      <input type="submit" value="Add" />
-                      <input type="reset" value="Clear" />
-                      <!-- TODO: Add number of pomos when creating task -->
+                        <h2>Add a task:</h2>
+                        <input type="text" name="newitem" id="newitem" placeholder="New Task" />
+                        <input type="number" name="newitempomo" id="newitempomo" placeholder="# Pomos" />
+                        <input type="submit" value="Add" id="add-btn" />
+                        <input type="reset" value="Clear" id="clear-btn" />
+                        <!-- TODO: Add number of pomos when creating task -->
                     </div>
                 </form>
             </div> 
