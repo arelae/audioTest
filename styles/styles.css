@@ -15,6 +15,7 @@ body {
     margin: 0 auto;
     margin-top: 1em;
     padding: 4rem;
+    border-radius: 25px;
 }
 
 #main {
@@ -99,7 +100,9 @@ ul {
     margin: 0 auto;
     float: left;
     padding: .25rem;  
-    /* border-radius: 10%; */
+    border-radius: 25px;
+    font-weight: bold;
+    font-size: 1.5rem;
 }
 
 #reset-btn {
@@ -107,7 +110,10 @@ ul {
     margin: 0 auto;
     float: right;
     padding: .25rem;  
-    /* border-radius: 10%; */
+    border-radius: 25px;
+    color: #fbfbfb;
+    font-weight: bold;
+    font-size: 1.5rem;
 }
 
 #task-container {
@@ -175,6 +181,7 @@ ul {
     font-size: 1.5vw;
     width:100%;
 }
+
 
 .minutes {
     width: 45%;

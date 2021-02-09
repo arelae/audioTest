@@ -24,8 +24,8 @@ window.onclick = function(event) {
   }
 }
 
-var twentyfiveMinutes = 60 * 1;
-// var twentyfiveMinutes = 60 * 25;
+// var twentyfiveMinutes = 60 * 1;
+var twentyfiveMinutes = 60 * 25;
 var pomodoro = 1;
 //Timer Functions
 window.onload = () => {
@@ -47,6 +47,33 @@ window.onload = () => {
             sound();
         }
     }
+
+    var inputMins = document.getElementById("userMins");
+    // TODO: custom seconds(?)
+    // var inputSecs = document.getElementById("userSecs");
+    inputMins.oninput = function(){
+        Stop(); //so that there's no overlapping timers
+        if(inputMins.value == "" || inputMins.value == "0" ){ //PROBLEM: if user wants to put more than one 0 for some reason, gives error
+            document.getElementById("minute").innerHTML = '25';
+            let normal = 25;
+            twentyfiveMinutes = 60 * normal;
+        }
+        else if(inputMins.value < 10){
+            document.getElementById("minute").innerHTML = '0' + inputMins.value;
+            twentyfiveMinutes = 60 * inputMins.value;
+        }
+        else{
+            document.getElementById("minute").innerHTML = inputMins.value;
+            twentyfiveMinutes = 60 * inputMins.value;
+        }
+        document.getElementById("seconds").innerHTML = '00';
+        minute = 0;
+        seconds = 0;
+        totalSeconds = twentyfiveMinutes;
+        intervalId = null;
+        // startTimer(); //PROBLEM: not sure how this knows how to start w/o this
+    }
+
     //Notfication Sound Functions
     function sound(){
         var x = document.getElementById("changeSelect").value;
@@ -101,34 +128,29 @@ window.onload = () => {
         mixBut.value = "Stop Timer";
     }
     function Stop(){
-    if (intervalId){
-        clearInterval(intervalId);
-    }
-    console.log("Stopped");
-    mixBut.removeEventListener("click", Stop);
-    mixBut.addEventListener("click", Start);
-    document.getElementById("mixBut").style.background = "lightgreen";
-    mixBut.value = "Start Timer";
+        if (intervalId){
+            clearInterval(intervalId);
+        }
+        console.log("Stopped");
+        mixBut.removeEventListener("click", Stop);
+        mixBut.addEventListener("click", Start);
+        document.getElementById("mixBut").style.background = "lightgreen";
+        mixBut.value = "Start Timer";
     }
     function Reset(){
         totalSeconds = twentyfiveMinutes;
-        document.getElementById("minute").innerHTML = '25';
+        if(inputMins.value == "" || inputMins.value == "0" ){ //PROBLEM: if user wants to put more than one 0 for some reason, gives error
+            document.getElementById("minute").innerHTML = '25';
+        }
+        else if(inputMins.value < 10){
+            document.getElementById("minute").innerHTML = '0' + inputMins.value;
+        }
+        else{
+            document.getElementById("minute").innerHTML = inputMins.value;
+        }
         document.getElementById("seconds").innerHTML = '00';
     }
 }
-
-// Custom Timer Length
-// var inputMins = document.getElementById("userMins").value;
-// var inputSecs = document.getElementById("userSecs").value;
-// if(inputMins == ""){
-//     alert("hello");
-// }
-// else{
-//     location.reload();
-//     twentyfiveMinutes = 60 * inputMins;
-//     alert(twentyfiveMinutes);
-// }
-
 
 (function(){
     var todo = document.querySelector( '#tasks' ),
