@@ -26,13 +26,14 @@ window.onclick = function(event) {
 
 // var twentyfiveMinutes = 60 * 1;
 var twentyfiveMinutes = 60 * 25;
-var pomodoro = 1;
+var pomodoro = 0;
 //Timer Functions
 window.onload = () => {
     let minute = 0;
     let seconds = 0;
     let totalSeconds = twentyfiveMinutes;
     let intervalId = null;
+    document.getElementById("completePomos").innerHTML = "Number of Complete Pomodoros: " + pomodoro;
     function startTimer() {
         --totalSeconds;
         seconds = Math.floor(totalSeconds % 60);
@@ -42,8 +43,10 @@ window.onload = () => {
         document.getElementById("minute").innerHTML = minute;
         document.getElementById("seconds").innerHTML = seconds;
         if(totalSeconds == 0){
+            pomodoro++;
             totalSeconds = twentyfiveMinutes;
             clearInterval(intervalId);
+            document.getElementById("completePomos").innerHTML = "Number of Complete Pomodoros: " + pomodoro;
             sound();
         }
     }
@@ -71,7 +74,6 @@ window.onload = () => {
         seconds = 0;
         totalSeconds = twentyfiveMinutes;
         intervalId = null;
-        // startTimer(); //PROBLEM: not sure how this knows how to start w/o this
     }
 
     //Notfication Sound Functions
