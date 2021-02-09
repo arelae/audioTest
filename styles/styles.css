@@ -112,14 +112,23 @@ ul {
 
 #task-container {
     background-color: #b8daeb;
+    border-radius: 25px;
     align-items: center;
     color: #07232e;
     text-align: center;
+    padding-bottom: 3px;
+    margin-bottom: 1em;
 }
 
 #tasks {
     background-color: #fbfbfb;
     color: #2b2b2b;
+    border-radius: 25px;
+}
+
+#tasks-title {
+    /* margin: 0;
+    line-height: 1; */
 }
 
 .modal {

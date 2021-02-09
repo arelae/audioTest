@@ -46,15 +46,6 @@ window.onload = () => {
             clearInterval(intervalId);
             sound();
         }
-        //plays alarm when at 00:00
-        // if(minute == 0 && seconds == 0){
-        //     //add this if infinite loop. doesnt stop till stop is pressed
-        //     // alarmAudio.addEventListener('ended', function() {
-        //     //   this.currentTime = 0;
-        //     //   this.play();
-        //     // }, false);
-        //     alarmAudio.play();
-        // }
     }
     //Notfication Sound Functions
     function sound(){
@@ -76,7 +67,7 @@ window.onload = () => {
         audioSound.addEventListener('ended', function() {
             this.currentTime = 0;
             this.play();
-          }, false);
+        }, false);
         audioSound.play();
         //Stop alarm sound
         document.getElementById("mixBut").onclick = function(event) {stopAlarm()}; //stop alarm when press stop
@@ -175,8 +166,3 @@ function noList(){
 var ul = document.getElementById("tasks");
 ul.innerHTML = "";
 }
-// //refresh confirmation
-// window.onbeforeunload = function(event)
-// {
-// return confirm("Confirm refresh");
-// };
