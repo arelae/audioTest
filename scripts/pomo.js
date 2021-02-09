@@ -26,8 +26,8 @@ window.onclick = function(event) {
 
 
 var alarmAudio = new Audio('https://freesound.org/data/previews/219/219244_4082826-lq.mp3');
-var twentyfiveMinutes = 60 * 1;
-// var twentyfiveMinutes = 60 * 25;
+// var twentyfiveMinutes = 60 * 1;
+var twentyfiveMinutes = 60 * 25;
 var pomodoro = 1;
 //Timer Functions
 window.onload = () => {
@@ -88,8 +88,7 @@ window.onload = () => {
     //Stop alarm sound
     document.getElementById("mixBut").onclick = function(event) {stopAlarm()}; //stop alarm when press stop
     document.getElementById("reset-btn").onclick = function(event) {stopAlarm()}; //stop alarm when press reset
-    function stopAlarm(event) {
-        event.preventDefault(); //prevent refresh
+    function stopAlarm() {
         var name = document.getElementById("mixBut");
         if(name.value == "Stop Timer"){
             alarmAudio.pause();
