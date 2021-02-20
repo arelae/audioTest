@@ -49,6 +49,18 @@ window.onload = () => {
             document.getElementById("completePomos").innerHTML = "Number of Complete Pomodoros: " + pomodoro;
             sound();
         }
+        if(pomodoro % 4 == 0){
+            alert("4");
+            var longBreak = 60 * 15;
+            totalSeconds = longBreak;
+            clearInterval(intervalId);
+            seconds = Math.floor(totalSeconds % 60);
+            minute = Math.floor((totalSeconds / 60) % 60);
+            minute = minute < 10 ? "0" + minute : minute;
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+            document.getElementById("minute").innerHTML = minute;
+            document.getElementById("seconds").innerHTML = seconds;
+        }
     }
 
     var inputMins = document.getElementById("userMins");
@@ -56,10 +68,22 @@ window.onload = () => {
     // var inputSecs = document.getElementById("userSecs");
     inputMins.oninput = function(){
         Stop(); //so that there's no overlapping timers
-        if(inputMins.value == "" || inputMins.value == "0" ){ //PROBLEM: if user wants to put more than one 0 for some reason, gives error
+        indexMins = 0;
+        // doesnt allow for custom timer to start with a 0 and more numbers
+        if(inputMins.value.length > 1){
+            while(inputMins.value.substring(indexMins, indexMins + 1) == "0"){
+                indexMins++;
+            }
+        }
+        inputMins.value = inputMins.value.substring(indexMins);
+        if(inputMins.value == ""){
             document.getElementById("minute").innerHTML = '25';
             let normal = 25;
             twentyfiveMinutes = 60 * normal;
+        }
+        else if(inputMins.value == "0"){
+            document.getElementById("minute").innerHTML = '00';
+            twentyfiveMinutes = 0;
         }
         else if(inputMins.value < 10){
             document.getElementById("minute").innerHTML = '0' + inputMins.value;
@@ -70,11 +94,41 @@ window.onload = () => {
             twentyfiveMinutes = 60 * inputMins.value;
         }
         document.getElementById("seconds").innerHTML = '00';
-        minute = 0;
-        seconds = 0;
+        // minute = 0;
+        // seconds = 0;
         totalSeconds = twentyfiveMinutes;
         intervalId = null;
     }
+
+    // TODO: custom seconds
+    // var inputSecs = document.getElementById("userSecs");
+    // inputSecs.oninput = function(){
+    //     Stop(); //so that there's no overlapping timers
+    //     indexSecs = 0;
+    //     // doesnt allow for custom timer to start with a 0 and more numbers
+    //     if(inputSecs.value.length > 1){
+    //         while(inputSecs.value.substring(indexSecs, indexSecs + 1) == "0"){
+    //             indexSecs++;
+    //         }
+    //     }
+    //     inputSecs.value = inputSecs.value.substring(indexSecs);
+    //     if(inputSecs.value == "" || inputSecs.value == "0"){
+    //         document.getElementById("seconds").innerHTML = '00';
+    //     }
+    //     else if(inputSecs.value < 10){
+    //         document.getElementById("seconds").innerHTML = '0' + inputSecs.value;
+    //         twentyfiveMinutes = (60 * inputMins.value) + inputSecs.value;
+    //     }
+    //     else{
+    //         document.getElementById("seconds").innerHTML = inputSecs.value;
+    //         twentyfiveMinutes = (60 * inputMins.value) + inputSecs.value;
+    //     }
+    //     // document.getElementById("seconds").innerHTML = '00';
+    //     // // minute = 0;
+    //     // // seconds = 0;
+    //     totalSeconds = twentyfiveMinutes;
+    //     intervalId = null;
+    // }
 
     //Notfication Sound Functions
     function sound(){
@@ -141,8 +195,12 @@ window.onload = () => {
     }
     function Reset(){
         totalSeconds = twentyfiveMinutes;
-        if(inputMins.value == "" || inputMins.value == "0" ){ //PROBLEM: if user wants to put more than one 0 for some reason, gives error
+        //minutes
+        if(inputMins.value == ""){
             document.getElementById("minute").innerHTML = '25';
+        }
+        else if(inputMins.value == "0"){
+            document.getElementById("minute").innerHTML = '00';
         }
         else if(inputMins.value < 10){
             document.getElementById("minute").innerHTML = '0' + inputMins.value;
@@ -151,6 +209,16 @@ window.onload = () => {
             document.getElementById("minute").innerHTML = inputMins.value;
         }
         document.getElementById("seconds").innerHTML = '00';
+        //seconds
+        // if(inputSecs.value == "" || inputSecs.value == "0" ){
+        //     document.getElementById("seconds").innerHTML = '00';
+        // }
+        // else if(inputSecs.value < 10){
+        //     document.getElementById("seconds").innerHTML = '0' + inputSecs.value;
+        // }
+        // else{
+        //     document.getElementById("seconds").innerHTML = inputSecs.value;
+        // }
     }
 }
 
