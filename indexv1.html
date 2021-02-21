@@ -1,67 +1,69 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title> Pomodoro Timer </title>
+    <title>Pomodoro Timer</title>
   </head>
 
   <body>
-    <h1> Pomodoro Timer Test 1 </h1>
-    <p id="time"> 1:00 </p>
-    
-    <script> 
-    var alarmAudio = new Audio('https://freesound.org/data/previews/219/219244_4082826-lq.mp3');
-    function timer() {
-      let currTime = new Date().getTime();
-      let timerTime = new Date();
-      timerTime.setMinutes(timerTime.getUTCMinutes() + 1);
-      const timer = timerTime.getTime();
+    <h1>Pomodoro Timer Test 1</h1>
+    <p id="time">1:00</p>
 
-      let val = setInterval( function() {
-        let curr = new Date().getTime();
-        let distance = timer - curr;
+    <script>
+      var alarmAudio = new Audio(
+        "https://freesound.org/data/previews/219/219244_4082826-lq.mp3"
+      );
+      function timer() {
+        let currTime = new Date().getTime();
+        let timerTime = new Date();
+        timerTime.setMinutes(timerTime.getUTCMinutes() + 1);
+        const timer = timerTime.getTime();
 
-        let min = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        let sec = Math.floor((distance % (1000 * 60)) / 1000);
-        if(sec >= 10){
+        let val = setInterval(function () {
+          let curr = new Date().getTime();
+          let distance = timer - curr;
+
+          let min = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+          let sec = Math.floor((distance % (1000 * 60)) / 1000);
+          if (sec >= 10) {
             document.getElementById("time").innerHTML = min + ":" + sec;
-        }
-        if(sec < 10){
+          }
+          if (sec < 10) {
             document.getElementById("time").innerHTML = min + ":0" + sec;
-        }
-        if(min == 0 && sec == 0){ //plays audio when timer gets to 00:00, sometimes skips because timer skips 00:00?
-          //add this if infinite loop. doesnt stop till stop is pressed
-          // alarmAudio.addEventListener('ended', function() {
-          //   this.currentTime = 0;
-          //   this.play();
-          // }, false);
-          alarmAudio.play();
-        }
-        if (distance < 0) { 
+          }
+          if (min == 0 && sec == 0) {
+            //plays audio when timer gets to 00:00, sometimes skips because timer skips 00:00?
+            //add this if infinite loop. doesnt stop till stop is pressed
+            // alarmAudio.addEventListener('ended', function() {
+            //   this.currentTime = 0;
+            //   this.play();
+            // }, false);
+            alarmAudio.play();
+          }
+          if (distance < 0) {
             clearInterval(val);
             document.getElementById("time").innerHTML = "DONE";
-        }
+          }
         }, 1000);
-    }
+      }
     </script>
 
-    <button style="color:red" onclick="toggle()">
+    <button style="color: red" onclick="toggle()">
       <div id="start">Start</div>
     </button>
 
-    <script> 
-    function toggle() {
-      var name = document.getElementById("start");
-      if (name.innerHTML === "Start") {
-        name.innerHTML = "Stop";
-        timer();
-      } 
-      else {
-        name.innerHTML = "Start";
-        reset();
-        clearInterval(val);
-        document.getElementById("time").innerHTML = "DONE";
+    <script>
+      function toggle() {
+        var name = document.getElementById("start");
+        if (name.innerHTML === "Start") {
+          name.innerHTML = "Stop";
+          timer();
+        } else {
+          name.innerHTML = "Start";
+          reset();
+          clearInterval(val);
+          document.getElementById("time").innerHTML = "DONE";
+        }
       }
-    }
     </script>
 
     <button onClick="reset()">
@@ -69,21 +71,24 @@
     </button>
 
     <script>
-      function reset() { 
+      function reset() {
         // location.reload(); //refreshes page, but it will lose tasks (use localStorage?)
         document.getElementById("time").innerHTML = "1:00"; // change to user input value
       }
-      document.getElementById("start").onclick = function(event) {stopAlarm()}; //stop alarm when press stop
-      document.getElementById("reset").onclick = function(event) {stopAlarm()}; //stop alarm when press reset
+      document.getElementById("start").onclick = function (event) {
+        stopAlarm();
+      }; //stop alarm when press stop
+      document.getElementById("reset").onclick = function (event) {
+        stopAlarm();
+      }; //stop alarm when press reset
       function stopAlarm() {
-          event.preventDefault(); //prevent refresh
-          var name = document.getElementById("start");
-          if(name.innerHTML == "Stop"){
-            alarmAudio.pause();
-            alarmAudio.currentTime = 0;
-          }
+        event.preventDefault(); //prevent refresh
+        var name = document.getElementById("start");
+        if (name.innerHTML == "Stop") {
+          alarmAudio.pause();
+          alarmAudio.currentTime = 0;
+        }
       }
-      
     </script>
   </body>
 </html>
