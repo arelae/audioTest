@@ -42,24 +42,19 @@ window.onload = () => {
         seconds = seconds < 10 ? "0" + seconds : seconds;
         document.getElementById("minute").innerHTML = minute;
         document.getElementById("seconds").innerHTML = seconds;
-        if(totalSeconds == 0){
+        if(totalSeconds <= 0){ 
             pomodoro++;
             totalSeconds = twentyfiveMinutes;
             clearInterval(intervalId);
             document.getElementById("completePomos").innerHTML = "Number of Complete Pomodoros: " + pomodoro;
             sound();
         }
-        if(pomodoro % 4 == 0){
+        if(pomodoro % 4 == 0 && pomodoro != 0){ //TODO: timer not starting anymore
             alert("4");
             var longBreak = 60 * 15;
             totalSeconds = longBreak;
             clearInterval(intervalId);
-            seconds = Math.floor(totalSeconds % 60);
-            minute = Math.floor((totalSeconds / 60) % 60);
-            minute = minute < 10 ? "0" + minute : minute;
-            seconds = seconds < 10 ? "0" + seconds : seconds;
-            document.getElementById("minute").innerHTML = minute;
-            document.getElementById("seconds").innerHTML = seconds;
+            startTimer();
         }
     }
 
